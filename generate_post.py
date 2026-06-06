@@ -176,7 +176,7 @@ def publish_article(blog_id, title, body_html, summary_html, tags):
 def should_post_today(article_count):
     if article_count < 30:
         return True, f"daily mode — building first 30 posts (currently at {article_count})"
-    today = datetime.datetime.utcnow().weekday()   # 0 = Monday
+    today = datetime.datetime.now(datetime.timezone.utc).weekday()   # 0 = Monday
     if today == 0:
         return True, f"weekly Monday mode — article count is {article_count}, posting today"
     day_names = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -261,7 +261,7 @@ def parse_response(raw, fallback_title):
 def main():
     print("=" * 60)
     print("ShopMusicBox Blog Bot")
-    print(f"Timestamp : {datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}")
+    print(f"Timestamp : {datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     print("=" * 60)
 
     # 1. Get blog ID
